@@ -1,0 +1,94 @@
+[o] fnsad tx wasm store artifacts/finschia_stargate.wasm --from link146asaycmtydq45kxc8evntqfgepagygelel00h --chain-id finschia --keyring-backend test --gas 10000000
+
+[o] fnsad tx wasm instantiate 1 '{"owner":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8","name":"collection_name","uri":"collection_uri","meta":"collection_meta"}' --label collection1 --admin link146asaycmtydq45kxc8evntqfgepagygelel00h --from link146asaycmtydq45kxc8evntqfgepagygelel00h --chain-id finschia --keyring-backend test
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"contract":{}}'
+
+[o] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"issue_nft":{"name":"nft1_name","meta":"nft1_meta","owner":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8"}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+[o] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"mint_nft":{"from":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8","to":"link146asaycmtydq45kxc8evntqfgepagygelel00h","params":[{"token_type":"10000001","name":"nft1_name1","meta":"nft1_meta1"},{"token_type":"10000001","name":"nft1_name2","meta":"nft1_meta2"}]}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+[x] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"send_nft":{"from":"link146asaycmtydq45kxc8evntqfgepagygelel00h","to":"link1twsfmuj28ndph54k4nw8crwu8h9c8mh3rtx705","token_ids":["1000000100000001"]}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+[x] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"burn_nft":{"from":"link146asaycmtydq45kxc8evntqfgepagygelel00h","token_ids":["1000000100000002"]}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+
+[x] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"authorize_operator":{"holder":"link146asaycmtydq45kxc8evntqfgepagygelel00h","operator":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8"}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+[o] fnsad tx collection authorize-operator 9be17165 link146asaycmtydq45kxc8evntqfgepagygelel00h link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"is_operator_for":{"operator":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8","holder":"link146asaycmtydq45kxc8evntqfgepagygelel00h"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"holders_by_operator":{"operator":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8"}}'
+
+[x] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"attach":{"from":"link146asaycmtydq45kxc8evntqfgepagygelel00h","token_id":"1000000100000001","to_token_id":"1000000100000002"}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+[o] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"operator_attach":{"operator":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8","from":"link146asaycmtydq45kxc8evntqfgepagygelel00h","token_id":"1000000100000001","to_token_id":"1000000100000002"}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"root":{"token_id":"1000000100000001"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"has_parent":{"token_id":"1000000100000002"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"parent":{"token_id":"1000000100000002"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"children":{"token_id":"1000000100000001"}}'
+
+[x] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"detach":{"from":"link146asaycmtydq45kxc8evntqfgepagygelel00h","token_id":"1000000100000002"}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+[o] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"operator_detach":{"operator":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8","from":"link146asaycmtydq45kxc8evntqfgepagygelel00h","token_id":"1000000100000001"}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"root":{"token_id":"1000000100000001"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"has_parent":{"token_id":"1000000100000002"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"parent":{"token_id":"1000000100000002"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"children":{"token_id":"1000000100000001"}}'
+
+[x] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"modify":{"owner":"link146asaycmtydq45kxc8evntqfgepagygelel00h","token_type":"10000001","token_index":"00000002","changes":[{"key":"name","value":"nft1_name2_modified"}]}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+
+[o] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"operator_send_nft":{"operator":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8","from":"link146asaycmtydq45kxc8evntqfgepagygelel00h","to":"link1twsfmuj28ndph54k4nw8crwu8h9c8mh3rtx705","token_ids":["1000000100000001"]}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+[o] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"operator_burn_nft":{"operator":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8","from":"link146asaycmtydq45kxc8evntqfgepagygelel00h","token_ids":["1000000100000002"]}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"nft_minted":{"token_type":"10000001"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"nft_burnt":{"token_type":"10000001"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"nft_supply":{"token_type":"10000001"}}'
+
+[o] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"issue_ft":{"name":"ft1_name","meta":"ft1_meta","decimals":8,"mintable":true,"owner":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8","to":"link146asaycmtydq45kxc8evntqfgepagygelel00h","amount":"1000"}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+[o] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"mint_ft":{"from":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8","to":"link146asaycmtydq45kxc8evntqfgepagygelel00h","amount":[{"token_id":"0000000100000000","amount":"111"}]}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"token":{"token_id":"00000001"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"token_type":{"token_type":"00000001"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"token_class_type_name":{"class_id":"00000001"}}'
+
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"balance":{"address":"link146asaycmtydq45kxc8evntqfgepagygelel00h","token_id":"00000001"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"all_balance":{"address":"link146asaycmtydq45kxc8evntqfgepagygelel00h"}}'
+
+[o] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"operator_send_ft":{"operator":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8","from":"link146asaycmtydq45kxc8evntqfgepagygelel00h","to":"link1twsfmuj28ndph54k4nw8crwu8h9c8mh3rtx705","amount":[{"token_id":"0000000100000000","amount":"10"}]}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+[o] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"operator_burn_ft":{"operator":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8","from":"link146asaycmtydq45kxc8evntqfgepagygelel00h","amount":[{"token_id":"0000000100000000","amount":"10"}]}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"balance":{"address":"link146asaycmtydq45kxc8evntqfgepagygelel00h","token_id":"00000001"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"balance":{"address":"link1twsfmuj28ndph54k4nw8crwu8h9c8mh3rtx705","token_id":"00000001"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"all_balance":{"address":"link146asaycmtydq45kxc8evntqfgepagygelel00h"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"all_balance":{"address":"link1twsfmuj28ndph54k4nw8crwu8h9c8mh3rtx705"}}'
+
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"ft_minted":{"token_id":"00000001"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"ft_burnt":{"token_id":"00000001"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"ft_supply":{"token_id":"00000001"}}'
+
+[o] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"grant_permission":{"from":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8","to":"link146asaycmtydq45kxc8evntqfgepagygelel00h","permission":"ISSUE"}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"grantee_grants":{"grantee":"link146asaycmtydq45kxc8evntqfgepagygelel00h"}}'
+
+[x] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"revoke_permission":{"from":"link146asaycmtydq45kxc8evntqfgepagygelel00h","permission":"ISSUE"}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"grantee_grants":{"grantee":"link146asaycmtydq45kxc8evntqfgepagygelel00h"}}'
+
+[x] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"send_ft":{"from":"link146asaycmtydq45kxc8evntqfgepagygelel00h","to":"link1twsfmuj28ndph54k4nw8crwu8h9c8mh3rtx705","amount":[{"token_id":"0000000100000000","amount":"10"}]}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+[x] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"burn_ft":{"from":"link146asaycmtydq45kxc8evntqfgepagygelel00h","amount":[{"token_id":"0000000100000000","amount":"10"}]}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+[o] fnsad tx wasm execute link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"revoke_operator":{"holder":"link146asaycmtydq45kxc8evntqfgepagygelel00h","operator":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8"}}' --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+[o] fnsad tx collection revoke-operator 9be17165 link146asaycmtydq45kxc8evntqfgepagygelel00h link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 --from link146asaycmtydq45kxc8evntqfgepagygelel00h --keyring-backend test --chain-id finschia --gas 10000000
+
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"is_operator_for":{"operator":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8","holder":"link146asaycmtydq45kxc8evntqfgepagygelel00h"}}'
+fnsad query wasm contract-state smart link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8 '{"holders_by_operator":{"operator":"link14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sgf2vn8"}}'
+
+
+v0.31.0 - 230313
+osmosis
+
+221103
+accept list stargate querier
+
+v0.29.1 - 221014
+finschia/wasmd
+
+v0.26.0 - 220421
+disable stargate queries
+
+v0.16.0 - 210430
+stargate msg and query 

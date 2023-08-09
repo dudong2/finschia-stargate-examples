@@ -1,0 +1,1 @@
+796b93737466c75b35d7e7c63a0389931cfff6789503b0ecb8ec6656b2ef4d6b  finschia_stargate.wasm

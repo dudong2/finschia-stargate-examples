@@ -1,0 +1,1 @@
+214446f52f1188fb14df85be7bf05d3be3897566c6e9387f1d08741ee882b020  .//target/wasm32-unknown-unknown/release/finschia_stargate.wasm
