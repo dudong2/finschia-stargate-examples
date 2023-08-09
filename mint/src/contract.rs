@@ -1,21 +1,19 @@
 #[cfg(not(feature = "library"))]
 use cosmwasm_std::entry_point;
 use cosmwasm_std::{
-    to_binary, Binary, CosmosMsg, Deps, DepsMut, Env, MessageInfo, Response, StdResult,
+    to_binary, Binary, Deps, DepsMut, Env, MessageInfo, Response, StdResult,
 };
 use cw2::set_contract_version;
 
-use finschia_std::types::cosmos::base::query::v1beta1::PageRequest;
-use finschia_std::types::cosmos::slashing::v1beta1::{MsgUnjail, SlashingQuerier};
-use finschia_std::types::cosmos::slashing::v1beta1::{
-    QueryParamsResponse, QuerySigningInfoResponse, QuerySigningInfosResponse,
+use finschia_std::types::cosmos::mint::v1beta1::{
+    MintQuerier, QueryAnnualProvisionsResponse, QueryInflationResponse, QueryParamsResponse,
 };
 
 use crate::error::ContractError;
 use crate::msg::{ExecuteMsg, InstantiateMsg, QueryMsg};
 
 // version info for migration info
-const CONTRACT_NAME: &str = "crates.io:finschia-stargate-slashing";
+const CONTRACT_NAME: &str = "crates.io:finschia-stargate-mint";
 const CONTRACT_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 #[cfg_attr(not(feature = "library"), entry_point)]
@@ -32,61 +30,41 @@ pub fn instantiate(
 
 #[cfg_attr(not(feature = "library"), entry_point)]
 pub fn execute(
-    deps: DepsMut,
-    _env: Env,
-    info: MessageInfo,
-    msg: ExecuteMsg,
-) -> Result<Response, ContractError> {
-    match msg {
-        ExecuteMsg::Unjail { validator_addr } => try_unjail(deps, info, validator_addr),
-    }
-}
-
-pub fn try_unjail(
     _deps: DepsMut,
+    _env: Env,
     _info: MessageInfo,
-    validator_addr: String,
+    _msg: ExecuteMsg,
 ) -> Result<Response, ContractError> {
-    let msg_unjail: CosmosMsg = MsgUnjail { validator_addr }.into();
-
-    Ok(Response::new()
-        .add_attribute("method", "try_unjail")
-        .add_message(msg_unjail))
+    Ok(Response::new())
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
 pub fn query(deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<Binary> {
     match msg {
-        QueryMsg::SigningInfo { cons_address } => {
-            to_binary(&query_signing_info(deps, cons_address)?)
-        }
-        QueryMsg::SigningInfos { pagination } => to_binary(&query_signing_infos(deps, pagination)?),
+        QueryMsg::Inflation {} => to_binary(&query_inflation(deps)?),
+        QueryMsg::AnnualProvisions {} => to_binary(&query_annual_provisions(deps)?),
         QueryMsg::Params {} => to_binary(&query_params(deps)?),
     }
 }
 
-fn query_signing_info(deps: Deps, cons_address: String) -> StdResult<QuerySigningInfoResponse> {
-    let bq = SlashingQuerier::new(&deps.querier);
-    let res = bq.signing_info(cons_address)?;
-    Ok(QuerySigningInfoResponse {
-        val_signing_info: res.val_signing_info,
+fn query_inflation(deps: Deps) -> StdResult<QueryInflationResponse> {
+    let mq = MintQuerier::new(&deps.querier);
+    let res = mq.inflation()?;
+    Ok(QueryInflationResponse {
+        inflation: res.inflation,
     })
 }
 
-fn query_signing_infos(
-    deps: Deps,
-    pagination: Option<PageRequest>,
-) -> StdResult<QuerySigningInfosResponse> {
-    let bq = SlashingQuerier::new(&deps.querier);
-    let res = bq.signing_infos(pagination)?;
-    Ok(QuerySigningInfosResponse {
-        info: res.info,
-        pagination: res.pagination,
+fn query_annual_provisions(deps: Deps) -> StdResult<QueryAnnualProvisionsResponse> {
+    let mq = MintQuerier::new(&deps.querier);
+    let res = mq.annual_provisions()?;
+    Ok(QueryAnnualProvisionsResponse {
+        annual_provisions: res.annual_provisions,
     })
 }
 
 fn query_params(deps: Deps) -> StdResult<QueryParamsResponse> {
-    let bq = SlashingQuerier::new(&deps.querier);
-    let res = bq.params()?;
+    let mq = MintQuerier::new(&deps.querier);
+    let res = mq.params()?;
     Ok(QueryParamsResponse { params: res.params })
 }
